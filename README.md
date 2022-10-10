@@ -1,5 +1,5 @@
 # Cache-Design-LLD
-#### Design a low leve cache
+#### Design a low level cache
 
 ## Problem Statement
 We have to do low level design for a Cache system. Cache that we will design will have to support following operations:
