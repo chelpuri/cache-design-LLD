@@ -1,5 +1,5 @@
-# Cache-Design-LLD
-#### Design a low level cache
+# LRU Cache Design-LLD
+#### Design a low level cache LRU(Least Recently Used) Cache using HashMap and DoublyLinkedList
 
 ## Problem Statement
 We have to do low level design for a Cache system. Cache that we will design will have to support following operations:
