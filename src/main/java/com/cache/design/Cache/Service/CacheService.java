@@ -3,17 +3,24 @@ package com.cache.design.Cache.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cache.design.Cache.DoublyLinkedList.DoublyLinkedList;
 import com.cache.design.Cache.DoublyLinkedList.DoublyLinkedListMethods;
 import com.cache.design.Cache.Exceptions.KeyNotFoundException;
 import com.cache.design.Cache.Exceptions.StorageFullException;
 
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
 public class CacheService<Key, Value> {
     DoublyLinkedList<Key, Value> dll;
     Map<Key, DoublyLinkedList<Key, Value>> map;
     DoublyLinkedListMethods<Key, Value> dm;
-    private int Capacity;
+    public int Capacity;
 
     public CacheService(int Capacity){
         dll = new DoublyLinkedList<>(null, null);
@@ -36,6 +43,7 @@ public class CacheService<Key, Value> {
             map.put(k, new DoublyLinkedList<>(k,v));
         }
     }
+
 
     public Value get(Key k) throws KeyNotFoundException{
         try {
