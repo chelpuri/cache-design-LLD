@@ -10,13 +10,13 @@ import com.cache.design.Cache.Exceptions.StorageFullException;
 
 
 public class CacheService<Key, Value> {
-    DoublyLinkedList<Value> dll;
-    Map<Key, DoublyLinkedList<Value>> map;
-    DoublyLinkedListMethods<Value> dm;
+    DoublyLinkedList<Key, Value> dll;
+    Map<Key, DoublyLinkedList<Key, Value>> map;
+    DoublyLinkedListMethods<Key, Value> dm;
     private int Capacity;
 
     public CacheService(int Capacity){
-        dll = new DoublyLinkedList<Value>(null);
+        dll = new DoublyLinkedList<>(null, null);
         map = new HashMap<>();
         this.Capacity = Capacity;
         dm = new DoublyLinkedListMethods<>();
@@ -26,22 +26,29 @@ public class CacheService<Key, Value> {
     public void put(Key k, Value v) throws StorageFullException {
         try {
             if(map.size() >= Capacity) throw new StorageFullException("Storage is full deleting tail node and inserting new node");
-            dm.insertNode(new DoublyLinkedList<>(v));
-            map.put(k, new DoublyLinkedList<>(v));
+            dm.insertNode(new DoublyLinkedList<>(k, v));
+            map.put(k, new DoublyLinkedList<>(k, v));
         }
         catch(StorageFullException exception) {
+            map.remove(dm.getTail().getKey()); // remove tail node from hashmap also
             dm.deleteNode(dm.getTail());
-            dm.insertNode(new DoublyLinkedList<>(v));
+            dm.insertNode(new DoublyLinkedList<>(k, v));
+            map.put(k, new DoublyLinkedList<>(k,v));
         }
     }
 
     public Value get(Key k) throws KeyNotFoundException{
-        if(map.get(k) == null) throw new KeyNotFoundException(k + " not found");
-        else {
-            DoublyLinkedList<Value> temp = map.get(k);
-            dm.deleteNode(temp);
-            dm.insertNode(temp);
-            return temp.getVal();
+        try {
+            if(map.get(k) == null) throw new KeyNotFoundException(k + " not found");
+            else {
+                DoublyLinkedList<Key, Value> temp = map.get(k);
+                dm.deleteNode(dm.getNode(temp.getVal()));
+                dm.insertNode(temp);
+                return temp.getVal();
+            }
+        }
+        catch(KeyNotFoundException message) {
+            return null;
         }
     }
 }

@@ -11,12 +11,12 @@ public class dlltest {
     
     @Test
     void addition(){
-    DoublyLinkedList<Integer> dll = new DoublyLinkedList<Integer>(3);
-    DoublyLinkedList<Integer> dll1 = new DoublyLinkedList<Integer>(2);
-    DoublyLinkedList<Integer> dll2 = new DoublyLinkedList<Integer>(1);
-    DoublyLinkedList<Integer> dll3 = new DoublyLinkedList<Integer>(4);
+    DoublyLinkedList<Integer, Integer> dll = new DoublyLinkedList<Integer, Integer>(1, 3);
+    DoublyLinkedList<Integer, Integer> dll1 = new DoublyLinkedList<Integer, Integer>(2, 2);
+    DoublyLinkedList<Integer, Integer> dll2 = new DoublyLinkedList<Integer, Integer>(3, 1);
+    DoublyLinkedList<Integer, Integer> dll3 = new DoublyLinkedList<Integer, Integer>(4, 4);
 
-    DoublyLinkedListMethods<Integer> dm = new DoublyLinkedListMethods<>();
+    DoublyLinkedListMethods<Integer, Integer> dm = new DoublyLinkedListMethods<>();
         dm.insertNode(dll);
     assertEquals(dm.getHead().getNext(), dll);
         dm.insertNode(dll1);
