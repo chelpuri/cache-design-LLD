@@ -22,7 +22,9 @@ public class dlltest {
         dm.insertNode(dll1);
         dm.insertNode(dll2);
         dm.insertNode(dll3);
+    assertEquals(dm.getHead().getNext().getVal(), dll3.getVal());
+    assertEquals(dm.getTail().getVal(), 3);
 
-
+    
     }
 }

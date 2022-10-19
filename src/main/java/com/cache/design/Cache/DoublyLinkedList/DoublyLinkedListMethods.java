@@ -36,7 +36,7 @@ public class DoublyLinkedListMethods<Value> {
 
     // return tail node to remove it as per storage full policy and check for empty list
     public DoublyLinkedList<Value> getTail() throws ListisEmptyException{
-        if(tail.prev != head) throw new ListisEmptyException("Cache is Empty");
+        if(tail.prev == head) throw new ListisEmptyException("Cache is Empty");
         else
             return tail.prev;
     }
