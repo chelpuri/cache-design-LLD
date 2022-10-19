@@ -29,7 +29,8 @@ public class DoublyLinkedListMethods<Value> {
     }
 
     // delete the node passed form Doubly Linked List
-    public void deleteNode(DoublyLinkedList<Value> dll) throws KeyNotFoundException{
+    public void deleteNode(DoublyLinkedList<Value> dll) throws KeyNotFoundException{ 
+        if(dll == null) return;
         dll.prev.next = dll.next;
         dll.next.prev = dll.prev;
     }
